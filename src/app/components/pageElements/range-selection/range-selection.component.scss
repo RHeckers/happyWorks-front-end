@@ -1,0 +1,32 @@
+@import '../../../globalStylingFiles/globalClasses.scss';
+@import '../../../globalStylingFiles/globalColorVariables.scss';
+
+.selectionHolder{
+    width: 100%;
+
+    p {
+        margin-bottom: 0px;
+    }
+
+    .rangeBlock {
+        margin-bottom: 45px;
+        min-width: 20%;
+        max-width: 33.33%;
+        display: inline-flex;
+        justify-content: center;    
+
+        .rangeHolder {
+            font-size: 3rem;
+            width: fit-content;
+            padding: 20px;
+            color: white;
+            background: $main-blue;
+            border-radius: 10px;
+        }
+    }
+
+    .selected {
+        border: 3px solid red;
+    }
+
+}

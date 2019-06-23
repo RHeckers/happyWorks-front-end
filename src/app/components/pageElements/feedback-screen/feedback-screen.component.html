@@ -1,0 +1,56 @@
+<div class="feedbackContainer">
+  <header class="feedbackHeader">
+    <div class="controlles">
+      <div class="backControlles">
+          <i class="fas fa-angle-double-left" *ngIf='currentQuestionIndex > getFirstIndex()' title="Back to first" (click)='backToFirst()'></i>
+          <i class="fas fa-angle-left" *ngIf='currentQuestionIndex > getFirstIndex()' title="Previous question" (click)='prevQuestion()'></i>
+      </div>
+      <div class="forwartControlles">
+          <i class="fas fa-angle-right" title="Next question" *ngIf='currentQuestionIndex < getLastIndex()' (click)='nextQuestion()'></i>
+          <i class="fas fa-angle-double-right" title="Go to last" *ngIf='currentQuestionIndex < getLastIndex()' (click)='skipToLast()'></i>
+      </div>
+    </div>
+    <h1 *ngIf="questionsFinished" class="feedbackTitle capitalize">Thank you for completing the questionnaire</h1>
+    <h1 *ngIf="currentQuestion.question && !questionsFinished" class="feedbackTitle capitalize">{{currentQuestion.question}}</h1>
+    <p *ngIf="currentQuestion.extraInfo && !questionsFinished" class="feedbackSUbTitle">{{currentQuestion.extraInfo}}</p>
+  </header>
+
+  <div #feedbackBody class="feedbackBody">
+    <ng-container *ngIf="!questionsFinished">
+      <div [ngSwitch]="currentQuestion.questionType">
+        <ng-container *ngSwitchCase="1">
+          <app-multiple-choise-element 
+            (selectedAnsware)='answareSelected($event)'
+            [answares]='currentQuestion.answares'
+            [existingValue]='bindObject[currentQuestion.bindTo]'>
+          </app-multiple-choise-element>
+        </ng-container>
+        <ng-container *ngSwitchCase="'scoreSlider'">
+          <app-score-slider 
+            [startAt]='bindObject[currentQuestion.bindTo]'
+            (selectedAnsware)='answareSelected($event)'>
+          </app-score-slider>
+        </ng-container>
+        <ng-container *ngSwitchCase="'rangeSelection'">
+          <app-range-selection 
+            [ranges]='currentQuestion.answares'
+            [existingValue]='bindObject[currentQuestion.bindTo]'
+            (selectedAnsware)='answareSelected($event)'>
+          </app-range-selection>
+        </ng-container>
+      </div>
+  </ng-container>
+
+    <div class="buttons">
+      <!-- <button class="btn">BACK</button> -->
+      <button *ngIf="!questionsFinished" class="btn submitAnswareBtn" (click)='confirmQuestion()' [class.disabledBtn]='!validSelection'
+        [disabled]='!validSelection'>
+        {{enumValues.confirmBtn[languageKey]}}
+      </button>
+      <button *ngIf="questionsFinished" class="btn submitAnswareBtn" (click)='completeFeedback()'>
+          {{enumValues.completeBtn[languageKey]}}
+      </button>
+      <!-- <button class="btn">SKIP</button> -->
+    </div>
+  </div>
+</div>

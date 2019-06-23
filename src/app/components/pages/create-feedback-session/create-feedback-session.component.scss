@@ -1,0 +1,58 @@
+@import '../../../globalStylingFiles/globalClasses.scss';
+@import '../../../globalStylingFiles/globalColorVariables.scss';
+
+.createFeedbackSessionContainer{
+    display: flex;
+    padding: 20px;
+    height: calc(100vh - 100px);
+
+    label {
+        padding-left: 3%;
+    }
+
+    h1 {
+        text-align: center;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+        text-transform: uppercase;    
+    }
+
+    .createcontainer{
+        width: 50%;
+        padding-right: 2%;
+    }
+
+    .previewContainer {
+        width: 50%;
+    }
+
+    .btnHolder {
+        display: flex;
+        justify-content: space-between;
+
+        .btn {
+            font-size: 25px;
+        }
+    }
+
+    .useExcistingBtn {
+        background: $teal-blue;
+        color: white;
+    }
+    .useExcistingBtn:hover {
+        color: $main-blue;
+        background: transparent;
+    }
+}
+
+.card {
+    text-align: center;
+
+    p {
+        font-size: 25px;
+    }
+}
+
+.addAnsware {
+    padding: 30px 0;
+}

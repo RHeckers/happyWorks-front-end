@@ -1,0 +1,55 @@
+@import '../../../globalStylingFiles/globalColorVariables.scss';
+@import '../../../globalStylingFiles/globalClasses.scss';
+
+.loginRegisterFormHolder{
+    width: 50%;
+    height: auto;
+    background: white;
+    margin-left: 25%;
+    margin-top: 15vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    form{
+        padding: 15px;
+        padding-top: 35px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .router-link-active{
+        background-color: $main-blue !important;
+        font-weight: bold !important;
+        color: white !important;
+    }
+
+    .disabledBtn {
+        background: $main-blue;
+        cursor: not-allowed;
+    }
+
+    .btn{
+        margin: 15px;
+        margin-top: 0px;
+    }
+
+    .loginRegisterFormHeader{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        h2{
+            font-size: 18px;
+            font-weight: 400;
+            width: 50%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3e9e95e;
+        }
+    }
+}

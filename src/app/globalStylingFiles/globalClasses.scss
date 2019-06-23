@@ -1,0 +1,35 @@
+@import './globalColorVariables.scss';
+
+.pointer{
+    cursor: pointer;
+}
+
+.shadow {
+    -webkit-box-shadow: 11px 13px 10px -3px rgba(0,0,0,0.19);
+    -moz-box-shadow: 11px 13px 10px -3px rgba(0,0,0,0.19);
+    box-shadow: 11px 13px 10px -3px rgba(0,0,0,0.19);
+}
+
+.disabledBtn {
+    cursor: not-allowed !important;
+}
+
+.starSmileEmoji {
+    color: #0acc0a !important;
+}
+
+.smileEmoji {
+    color: #0acc0abb !important;
+}
+
+.mehEmoji {
+    color: $main-blue !important;
+}
+
+.tearEmoji {
+    color: #d80a71 !important;
+}
+
+.cryEmoji {
+    color: #a50555 !important;
+}

@@ -1,0 +1,98 @@
+@import '../../../globalStylingFiles/globalClasses.scss';
+
+// Range: Track
+input[type="range"] {
+    appearance: none;
+    width: 100%;
+    height: 2em;
+    margin: 2em 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: #4d4d4d;
+    outline: none;
+    cursor: pointer;
+    &:focus {
+         outline:none;
+    }
+    &::-moz-focus-outer {
+        border: 0;
+    }
+}
+
+// Range: Utilities
+input[type="range"]::-moz-range-track {
+    border: inherit;
+    background: transparent;
+    border-top:2em solid transparent;
+    border-bottom:2em solid transparent;
+}
+
+input[type="range"]::-ms-track {
+    border: inherit;
+    color: transparent; /* don't drawn vertical reference line */
+    background: transparent;
+}
+input[type="range"]::-ms-fill-lower,
+input[type="range"]::-ms-fill-upper {
+    background: transparent;
+}
+input[type="range"]::-ms-tooltip {
+    display: none;
+}
+
+// Range: Thumb
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1em;
+    height: 2em;
+    border: none;
+    border-radius: 0;
+    background: #00b7c6;
+    cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+    width: 2em;
+    height: 2em;
+    border: none;
+    border-radius: 0;
+    background: #00b7c6;
+    cursor: pointer;
+}
+input[type="range"]::-ms-thumb {
+    width: 1em;
+    height: 2em;
+    border-radius: 0;
+    border: 0;
+    background: #00b7c6;
+}
+
+.emojiBox {
+    font-size: 4rem;
+    margin-bottom: 40px;
+    i {
+        position: relative;
+        margin: 0 auto;
+    }
+}
+
+.rangeholder {
+    height: auto;
+    text-align: center;
+    position: relative;
+
+    h1 {
+        font-size: 25px;
+        font-weight: bold;
+        position: absolute;
+    
+    }
+}
+
+.range {
+    display: flex;
+
+    p {
+        font-weight: bold;
+    }
+}

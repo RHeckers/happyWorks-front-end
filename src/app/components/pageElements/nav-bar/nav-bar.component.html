@@ -1,0 +1,17 @@
+<nav class="navBar">
+  <div class="iconHolder">
+      <i *ngIf="sideBarOpen" class="fas fa-minus fa-ms pointer" (click)="toggleSideBar('close')"></i>
+      <i *ngIf="!sideBarOpen" class="fas fa-plus fa-ms pointer" (click)="toggleSideBar('open')"></i>
+  </div>
+  <div class="navItemsHolder">
+    <ng-container *ngFor="let item of navItems">
+        <div *ngIf="!item.conditional" [routerLink]='item.route' class="navItem pointer">
+            <i [class]="item.icon"></i>
+            <p class="navItemTitle">{{ item.title | uppercase }}</p>
+        </div>
+    </ng-container>
+    <div *ngIf="authenticatedUser" class="navItem pointer" (click)="logout()">
+        <p class="navItemTitle">UITLOGGEN</p>
+    </div>
+  </div>
+</nav>

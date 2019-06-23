@@ -1,0 +1,11 @@
+<div class="selectionHolder">
+  <ng-container *ngFor="let range of rangesAsArray">
+    <div class="rangeBlock" 
+         (click)='makeSelection(range)'
+         [ngStyle]="{'width': (100 / rangesAsArray.length) + '%' }">
+      <div class="rangeHolder shadow pointer" [class.selected]='range.enumIndex == selected'>
+        <p class="range">{{range.enumValue}}</p>
+      </div>
+    </div>
+  </ng-container>
+</div>

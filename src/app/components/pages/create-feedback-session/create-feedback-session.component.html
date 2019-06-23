@@ -1,0 +1,90 @@
+<div class="createFeedbackSessionContainer">
+  <div class="createcontainer">
+    <h1>Create Your Feedback session</h1>
+    <form (change)='checkIfShowAddQuestionForm()' [formGroup]='createFeedbackSessionForm'>
+      <div class="form-group row">
+        <label for="staticEmail" class="col-sm-3 col-form-label">Session Title</label>
+        <div class="col-sm-9">
+          <input #sessionTitle (keyup)='addFormSessionObject.sessionTitle = sessionTitle.value' type="text"
+            class="form-control" formControlName="sessionTitle">
+        </div>
+      </div>
+      <div class="form-group row"
+        *ngIf="addOrExcistingSelected === undefined && addFormSessionObject.sessionTitle !== ''">
+        <label for="staticEmail" class="col-sm-3 col-form-label">New or excisting</label>
+        <div class="col-sm-9 btnHolder">
+          <button (click)='checkIfShowAddQuestionForm(true)' class="btn addNewBtn">Add new question</button>
+          <button (click)='checkIfShowAddQuestionForm(false)' class="btn useExcistingBtn">Use excisting
+            question</button>
+        </div>
+      </div>
+      <div *ngIf="addOrExcistingSelected !== undefined" class="form-group row">
+        <label class="col-sm-3 col-form-label">Question type</label>
+        <div class="col-sm-9">
+          <select class="form-control" formControlName="questionType">
+            <option class="option" [value]="type.enumIndex" *ngFor="let type of questionTypes">{{type.enumValue}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <form *ngIf="showAddQuestionForm" (change)='addQuestionFormChanged()' [formGroup]='addNewQuestionForm'>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Question Title</label>
+        <div class="col-sm-9">
+          <input #questionTitle (keyup)='currentQuestion.question = questionTitle.value' type="text"
+            class="form-control" formControlName="questionTitle">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Question description (optional)</label>
+        <div class="col-sm-9">
+          <textarea #questionExtraInfo (keyup)='currentQuestion.extraInfo = questionExtraInfo.value'
+            class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+      </div>
+      <div *ngIf="currentQuestion.questionType == 1" class="form-group row">
+        <label class="col-sm-3 col-form-label">Use default answares</label>
+        <div class="iconCheckBox" (click)='toggleDefaultAnswares()'>
+          <i #icon (click)='icon.classList.toggle("visible")' class="fas fa-check visible"></i>
+        </div>
+      </div>
+      <ng-container *ngIf="createCustomQuestion">
+        <h3 class="addAnsware">Add answare to question</h3>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Answare</label>
+          <div class="col-sm-9">
+            <input #questionTitle (keyup)='currentQuestion.question = questionTitle.value' type="text"
+              class="form-control" formControlName="answareTitle">
+          </div>
+        </div>
+      </ng-container>
+    </form>
+    <button [class.disabledBtn]='!addNewQuestionForm.valid || createCustomQuestion && currentQuestion.answares.length < 1' 
+            [disabled]="!addNewQuestionForm.valid || createCustomQuestion && currentQuestion.answares.length < 1" class="btn">
+                        {{enumValues.confirmBtn[languageKey]}}
+    </button>
+  </div>
+
+  <div class="previewContainer">
+    <h1>preview: {{addFormSessionObject.sessionTitle}}</h1>
+    <div *ngIf="questions">
+      <app-feedback-screen [questions]='questions' [bindObject]='bindObject'>
+      </app-feedback-screen>
+    </div>
+    <div *ngIf="!questions">
+      <div class="card">
+        <div class="card-header">
+          <h2>Sorry we cannot provide a preview at this time</h2>
+        </div>
+        <div class="card-body">
+          <hr>
+          <p class="card-text">Fill out the form on the left side of the screen. Start by creating a title for your
+            feedback session.</p>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

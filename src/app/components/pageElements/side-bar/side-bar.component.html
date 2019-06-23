@@ -1,0 +1,23 @@
+<div #sidebar class="sideBar">
+  <div class="sideBarTopSection">
+    <h1 *ngIf="sideBarOpen" class="logo pointer">LOGO</h1>
+  </div>
+  <div class="sideBarNavigationSection">
+    <ng-container *ngFor="let item of sideNavItems">
+      <div class="navItemHolder pointer" [routerLink]='item.route' >
+        <div class="itemHolder">
+            <i [class]="item.icon" ></i>
+            <p class="sidenavItemTitle">{{item.title}}</p>
+        </div>
+      </div>
+      <div class="subNavItems" *ngIf="sideBarOpen">
+          <ng-container *ngFor="let subItem of item.subNavItems" (click)='stoppropagation($event)'>
+              <div class="pointer subNavItem" [routerLink]='subItem.route'>
+                  <i [class]="subItem.icon" ></i>
+                  <p class="sidenavItemTitle">{{subItem.title}}</p>
+              </div>
+          </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>

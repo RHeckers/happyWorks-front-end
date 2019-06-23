@@ -1,0 +1,13 @@
+<div class="rangeholder">
+  <div class="emojiBox">
+    <i *ngIf="currentValue <= 20" class="fas fa-sad-cry cryEmoji"></i>
+    <i *ngIf="currentValue > 20 && currentValue <= 40" class="fas fa-sad-tear tearEmoji"></i>
+    <i *ngIf="currentValue > 40 && currentValue <= 60"  class="fas fa-meh mehEmoji"></i>
+    <i *ngIf="currentValue > 60 && currentValue <= 80"  class="fas fa-smile-beam smileEmoji"></i>
+    <i *ngIf="currentValue > 80"  class="fas fa-grin-stars starSmileEmoji"></i>
+  </div>
+  <h1 id="count" [ngStyle]="{'left': currentValue - 1.5 + '%'}">{{currentValue}}</h1>
+  <div class="range">
+      <input (mousemove)='getCurrentRange($event)' [(ngModel)]="currentValue" type="range" min="0" max="100" id="amount">
+  </div>
+</div>

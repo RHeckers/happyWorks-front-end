@@ -1,0 +1,17 @@
+.feedbackHolder {
+    width: 100%;
+    position: relative;
+    height: calc(100vh - 100px);
+    padding: 25px;
+    display: flex;
+
+    .feedBackSection {
+        width: 58%;
+        margin-right: 2%;
+    }
+
+    .widgetsSection {
+        width: 40%;
+        border: 1px solid black;
+    }
+}

@@ -1,0 +1,30 @@
+@import '../../../globalStylingFiles/globalColorVariables.scss';
+@import '../../../globalStylingFiles/globalClasses.scss';
+
+.navBar{
+    height: 100px;
+    width: 100%;
+    background: $main-blue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .fas{
+        color: white;
+    }
+
+    .iconHolder{
+        margin-left: 15px;
+    }
+
+    .navItemsHolder{
+        margin-right: 15px;
+        display: flex;
+    }
+
+    .navItem{
+        display: flex;
+        padding: 0 5px;
+        color: white;
+    }
+}

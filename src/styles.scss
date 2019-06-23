@@ -1,0 +1,62 @@
+@import './app/globalStylingFiles/globalColorVariables.scss';
+
+body {
+	line-height: 1;
+	position: relative;
+	min-height: 100vh;
+	// margin-left: 15%;
+	background-color: aliceblue
+}
+
+
+.iconCheckBox {
+	height: 30px;
+	width: 30px;
+	border: 3px solid #ced4da;
+	// box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0.2), 0 3px 10px 0 rgba(255, 255, 255, 0.19);
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 0px 15px;
+}
+
+.fa-check {
+	color: #90ff90;
+	font-weight: bold;
+	font-size: 45px;
+	margin-left: -6px;
+	margin-top: -15px;
+	opacity: 0;
+	transition-duration: 900ms;
+	transition-property: all;
+}
+
+.visible {
+	opacity: 1;
+}
+
+// Bootstrap overwrites
+.form-control {
+	font-size: 1.25rem;
+}
+
+.col-form-label {
+	font-size: 1.1rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	display: flex;
+    align-items: center;
+}
+
+.btn {
+	text-transform: uppercase;
+	padding: 10px;
+	background: $main-blue;
+	color: white;
+	font-weight: bold;
+}
+
+.btn:hover {
+	color: $main-blue;
+	background: transparent;
+}
+

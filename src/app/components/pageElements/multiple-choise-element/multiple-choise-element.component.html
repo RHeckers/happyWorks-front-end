@@ -1,0 +1,10 @@
+<div class="answaresHolder">
+  <ng-container *ngFor="let answare of answares; let i = index">
+    <div class="answareHolder" (click)='setSelected(answare)'>
+      <label>{{answare.enumValue}}</label>
+      <div class="iconCheckBox">
+        <i [class.visible]='selected == answare.enumIndex' class="fas fa-check"></i>
+      </div>
+    </div>
+  </ng-container>
+</div>
