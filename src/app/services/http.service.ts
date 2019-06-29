@@ -16,7 +16,6 @@ export class HttpService {
   }
 
   makePostRequest(route, requestObj) {
-    console.log(this.apiURI + route, requestObj);
     return this.http.post<any>(this.apiURI + route, requestObj);
   }
 

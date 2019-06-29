@@ -28,8 +28,8 @@ export class DashboardComponent implements OnInit {
     this.questions = [
       {
         question: 'Please let us know what you think about this',
-        answares: null,
-        questionType: 'multipleChoise',
+        answers: null,
+        questionType: 1,
         extraInfo: null,
         bindTo: 'valueOne',
         index: 0
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
       {
         question: 'Please let us know in what range you are',
         questionType: 'rangeSelection',
-        answares: rangeEnum,
+        answers: rangeEnum,
         extraInfo: null,
         bindTo: 'valueTwo',
         index: 1

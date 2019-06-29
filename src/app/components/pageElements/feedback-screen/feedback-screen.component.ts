@@ -34,7 +34,7 @@ export class FeedbackScreenComponent implements OnInit {
   
   }
 
-  answareSelected(selectedValues) {
+  answerselected(selectedValues) {
     this.bindObject[this.currentQuestion.bindTo] = selectedValues.enumIndex;
     this.validSelection = true;
   }

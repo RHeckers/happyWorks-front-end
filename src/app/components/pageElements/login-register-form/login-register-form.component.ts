@@ -2,6 +2,7 @@ import { HttpService } from './../../../services/http.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { apiURIs } from '../../../../assets/apiURI';
 
 @Component({
   selector: 'app-login-register-form',
@@ -30,7 +31,7 @@ export class LoginRegisterFormComponent implements OnInit {
         this.router.navigate(['/app-dashboard']);
       });
     } else {
-      this.httpService.makePostRequest('auth/signup', form.value).subscribe(createdUser => {
+      this.httpService.makePostRequest(apiURIs.login, form.value).subscribe(createdUser => {
         console.log(createdUser);
       });
     }

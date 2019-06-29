@@ -1,6 +1,6 @@
 
-// Default miltiple choise answars NL
-export enum multipleChoiseDefaultAnswares1 {
+// Default multiple choise answars NL
+export enum multipleChoiseDefaultanswersNL {
     'Ik ben zeer tevreden hierover' = 1,
     'Ik ben tevreden hierover',
     'Ik ben hier neutraal over',
@@ -8,13 +8,18 @@ export enum multipleChoiseDefaultAnswares1 {
     'Ik ben helemaal niet tevreden hierover'
 };
 // Default miltiple choise answars ENG
-export enum multipleChoiseDefaultAnswares2 {
+export enum multipleChoiseDefaultanswersENG {
     'I am very happy about this' = 1,
     'I am happy about this',
     'I am neutral about this',
     'I am a bit unhappy about this',
     'I am totaly unhappy about this'
 };
+
+export const multipleChoiseDefaultanswers = [
+    multipleChoiseDefaultanswersNL, 
+    multipleChoiseDefaultanswersENG
+]
 
 // Range 100 Enums
 export enum range100in3 {
@@ -60,6 +65,18 @@ export enum completeBtn {
 export enum confirmBtn {
     'BEVESTIGEN' = 1,
     'CONFIRM'
+};
+export enum cancelBtn {
+    'ANNULEREN' = 1,
+    'CANCEL'
+};
+export enum addAnswerBtn {
+    'ANTWOORD TOEVOEGEN' = 1,
+    'ADD ANSWER'
+};
+export enum confirmNewAnswersBtn {
+    'ANTWOORDEN GROEP OPSLAAN' = 1,
+    'SAVE ANSWER GROUP'
 };
 
 // +++++++++++++++++++++++++++++++++++

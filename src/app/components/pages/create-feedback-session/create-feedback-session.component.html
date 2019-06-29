@@ -21,54 +21,100 @@
       <div *ngIf="addOrExcistingSelected !== undefined" class="form-group row">
         <label class="col-sm-3 col-form-label">Question type</label>
         <div class="col-sm-9">
-          <select class="form-control" formControlName="questionType">
+          <select class="form-control" [value]='currentSelectedQuestionType' formControlName="questionType">
             <option class="option" [value]="type.enumIndex" *ngFor="let type of questionTypes">{{type.enumValue}}
             </option>
           </select>
         </div>
       </div>
     </form>
-    <form *ngIf="showAddQuestionForm" (change)='addQuestionFormChanged()' [formGroup]='addNewQuestionForm'>
+    <form *ngIf="showAddQuestionForm" [formGroup]='addNewQuestionForm'>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label">Question Title</label>
         <div class="col-sm-9">
           <input #questionTitle (keyup)='currentQuestion.question = questionTitle.value' type="text"
-            class="form-control" formControlName="questionTitle">
+            class="form-control" formControlName="questionTitle" [value]='currentQuestion.question'>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label">Question description (optional)</label>
         <div class="col-sm-9">
           <textarea #questionExtraInfo (keyup)='currentQuestion.extraInfo = questionExtraInfo.value'
-            class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            class="form-control" id="exampleFormControlTextarea1" rows="3" [value]='currentQuestion.extraInfo'></textarea>
         </div>
       </div>
       <div *ngIf="currentQuestion.questionType == 1" class="form-group row">
-        <label class="col-sm-3 col-form-label">Use default answares</label>
-        <div class="iconCheckBox" (click)='toggleDefaultAnswares()'>
-          <i #icon (click)='icon.classList.toggle("visible")' class="fas fa-check visible"></i>
-        </div>
-      </div>
-      <ng-container *ngIf="createCustomQuestion">
-        <h3 class="addAnsware">Add answare to question</h3>
-        <div class="form-group row">
-          <label class="col-sm-3 col-form-label">Answare</label>
-          <div class="col-sm-9">
-            <input #questionTitle (keyup)='currentQuestion.question = questionTitle.value' type="text"
-              class="form-control" formControlName="answareTitle">
+        <label class="col-sm-3 col-form-label">Use default answers</label>
+        <div class="col-sm-9 checkboxHolder">
+          <div class="iconCheckBox" (click)='toggleDefaultanswers()'>
+            <i #icon (click)='icon.classList.toggle("visible")' class="fas fa-check visible"></i>
           </div>
         </div>
+      </div>
+      <ng-container *ngIf="createCurstomAnswers">
+        <h3 class="subTitle">Add custom answare to the question</h3>
+        <form [formGroup]='createCustomAnswersForm'>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Group title</label>
+                <div class="col-sm-9">
+                  <input #answerGroupTitle [value]='customQuestionGroupTitle' (keyup)='customQuestionGroupTitle = answerGroupTitle.value'
+                    type="text" class="form-control" formControlName="answerGroupTitle" [value]='customQuestionGroupTitle'>
+                </div>
+            </div>
+          <div class="form-group row" *ngIf="createNewAnswers === undefined">
+              <label for="staticEmail" class="col-sm-3 col-form-label">New or excisting</label>
+              <div class="col-sm-9 btnHolder">
+                <button (click)='createCutsomAnswers()' class="btn addNewBtn">Add new answers</button>
+                <button (click)='createNewAnswers = false' class="btn useExcistingBtn">Use excisting
+                  answers</button>
+              </div>
+          </div>
+          <div *ngIf="createNewAnswers" class="form-group row">
+            <label class="col-sm-3 col-form-label">Answer</label>
+            <div class="col-sm-9">
+              <input #answerTitle [value]='currentNewAnswer' (keyup)='currentNewAnswer = answerTitle.value' type="text"
+                class="form-control" formControlName="answareTitle">
+            </div>
+          </div>
+        </form>
       </ng-container>
     </form>
-    <button [class.disabledBtn]='!addNewQuestionForm.valid || createCustomQuestion && currentQuestion.answares.length < 1' 
-            [disabled]="!addNewQuestionForm.valid || createCustomQuestion && currentQuestion.answares.length < 1" class="btn">
-                        {{enumValues.confirmBtn[languageKey]}}
+
+    <!-- Buttons -->
+    <button *ngIf="!createNewAnswers" (click)='saveQuestion()'
+      [class.disabledBtn]='!addNewQuestionForm.valid || createCurstomAnswers && currentQuestion.answers.length < 1'
+      [disabled]="!addNewQuestionForm.valid || createCurstomAnswers && currentQuestion.answers.length < 1" class="btn">
+      {{enumValues.confirmBtn[languageKey]}}
     </button>
+    <button *ngIf="createNewAnswers" (click)='addAnswer()' [disabled]="currentNewAnswer.length < 1" class="btn">
+      {{enumValues.addAnswerBtn[languageKey]}}
+    </button>
+
+    <!-- new aswers preview -->
+    <div class="newAnswersPreview" *ngIf="newAnswers && newAnswers.length > 0">
+      <h3 class="subTitle">Created answers <p>(Drag and drop to change the order)</p>
+      </h3>
+      <div cdkDropList class="answersList" (cdkDropListDropped)="answerPositionChange($event)">
+        <div *ngFor="let answer of newAnswers; let i = index" class="newAnswer" cdkDrag>
+          <p>{{answer.enumValue}}</p>
+          <i (click)='removeAnswer(i)' class="fas fa-trash-alt"></i>
+        </div>
+      </div>
+
+      <div class="newAnswersButtons">
+        <button *ngIf="newAnswers && newAnswers.length > 0" (click)='saveNewCustomAnswers()' class="btn">
+          {{enumValues.confirmNewAnswersBtn[languageKey]}}
+        </button>
+        <button *ngIf="createNewAnswers" class="btn useExcistingBtn">
+          {{enumValues.cancelBtn[languageKey]}}
+        </button>
+      </div>
+    </div>
   </div>
 
   <div class="previewContainer">
     <h1>preview: {{addFormSessionObject.sessionTitle}}</h1>
-    <div *ngIf="questions">
+    <div *ngIf="questions" class="previewHolder">
       <app-feedback-screen [questions]='questions' [bindObject]='bindObject'>
       </app-feedback-screen>
     </div>

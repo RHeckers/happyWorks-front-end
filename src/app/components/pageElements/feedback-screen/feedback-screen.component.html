@@ -20,22 +20,22 @@
       <div [ngSwitch]="currentQuestion.questionType">
         <ng-container *ngSwitchCase="1">
           <app-multiple-choise-element 
-            (selectedAnsware)='answareSelected($event)'
-            [answares]='currentQuestion.answares'
+            (selectedAnsware)='answerselected($event)'
+            [answers]='currentQuestion.answers'
             [existingValue]='bindObject[currentQuestion.bindTo]'>
           </app-multiple-choise-element>
         </ng-container>
         <ng-container *ngSwitchCase="'scoreSlider'">
           <app-score-slider 
             [startAt]='bindObject[currentQuestion.bindTo]'
-            (selectedAnsware)='answareSelected($event)'>
+            (selectedAnsware)='answerselected($event)'>
           </app-score-slider>
         </ng-container>
         <ng-container *ngSwitchCase="'rangeSelection'">
           <app-range-selection 
-            [ranges]='currentQuestion.answares'
+            [ranges]='currentQuestion.answers'
             [existingValue]='bindObject[currentQuestion.bindTo]'
-            (selectedAnsware)='answareSelected($event)'>
+            (selectedAnsware)='answerselected($event)'>
           </app-range-selection>
         </ng-container>
       </div>

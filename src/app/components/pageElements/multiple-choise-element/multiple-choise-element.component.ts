@@ -1,5 +1,5 @@
 import { GlobalService } from './../../../services/global.service';
-import * as EnumsNL from '../../../enums/enums';
+import * as Enums from '../../../enums/enums';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class MultipleChoiseElementComponent implements OnInit {
 
-  @Input() answares: any;
+  @Input() answers: any;
   @Input() existingValue: any;
 
   @Output() selectedAnsware = new EventEmitter<any>();
@@ -20,12 +20,12 @@ export class MultipleChoiseElementComponent implements OnInit {
   constructor(private globalService: GlobalService) { }
 
   ngOnInit() {
-    console.log(this.answares);
     this.selected = this.existingValue;
     !this.languageKey ? this.languageKey = 1 : this.languageKey = this.languageKey;
-    let defaultAnswares = EnumsNL[`multipleChoiseDefaultAnswares${this.languageKey}`];
-    defaultAnswares = this.globalService.mapEnumValuesToArray(defaultAnswares);
-    !this.answares ? this.answares = defaultAnswares : this.answares = this.globalService.mapEnumValuesToArray(this.answares);
+    let defaultanswers = Enums.multipleChoiseDefaultanswers;
+    console.log(defaultanswers);
+    defaultanswers = this.globalService.mapEnumValuesToArray(defaultanswers[this.languageKey - 1]);
+    !this.answers ? this.answers = defaultanswers : this.answers = this.globalService.mapEnumValuesToArray(this.answers[this.languageKey - 1]);
   }
 
   setSelected(answare) {

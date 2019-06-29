@@ -8,6 +8,12 @@ body {
 	background-color: aliceblue
 }
 
+.fa {
+	cursor: pointer;
+}
+.fas {
+	cursor: pointer;
+}
 
 .iconCheckBox {
 	height: 30px;
@@ -35,6 +41,10 @@ body {
 }
 
 // Bootstrap overwrites
+p{
+	margin-bottom: 0px;
+}
+
 .form-control {
 	font-size: 1.25rem;
 }
@@ -53,6 +63,7 @@ body {
 	background: $main-blue;
 	color: white;
 	font-weight: bold;
+	font-size: 1.1rem;
 }
 
 .btn:hover {
