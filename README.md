@@ -1,5 +1,5 @@
 # WORK IN PROGRESS
-  Building an app to give anonimous feedback, create feedback forms, assign them to teams, respond anonimous or with your profile, and       more. There is still a lot of work to be done, feedback display component is created, and the feedback creation page is almost finished. There are also some other pages, interceptors, etc build, but its still early works.
+  Building an app to give anonimous feedback, create feedback forms, assign them to teams, respond anonimous or with your profile, and       more. There is still a lot of work to be done, feedback display component is created, a few question types are created among the multiple choise (the most important one for the app) and the feedback creation page is almost finished. There is also some other stuff created like interceptors, enums, globalStylings, etc. But this one is still in a very early stage. 
 
 # Happyworks
 
